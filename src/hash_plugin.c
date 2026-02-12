@@ -81,14 +81,17 @@ static uint32_t simple_hash(const char* str) {
     return hash;
 }
 
-/* Plugin info - returns JSON with plugin metadata */
+/* Plugin info - returns JSON with plugin metadata and custom action definitions */
 char* aro_plugin_info(void) {
     const char* info =
         "{"
         "\"name\":\"plugin-c-hash\","
         "\"version\":\"1.0.0\","
-        "\"language\":\"c\","
-        "\"actions\":[\"hash\",\"djb2\",\"fnv1a\"]"
+        "\"actions\":["
+        "  {\"name\":\"Hash\",\"role\":\"own\",\"verbs\":[\"hash\",\"digest\"],\"prepositions\":[\"from\",\"with\"]},"
+        "  {\"name\":\"DJB2\",\"role\":\"own\",\"verbs\":[\"djb2\"],\"prepositions\":[\"from\"]},"
+        "  {\"name\":\"FNV1a\",\"role\":\"own\",\"verbs\":[\"fnv1a\",\"fnv\"],\"prepositions\":[\"from\"]}"
+        "]"
         "}";
 
     char* result = malloc(strlen(info) + 1);

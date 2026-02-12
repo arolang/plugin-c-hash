@@ -19,3 +19,19 @@ provides:
         - "-fPIC"
         - "-shared"
       output: libhash_plugin.dylib
+    actions:
+      - name: Hash
+        role: own
+        verbs: [hash, digest]
+        prepositions: [from, with]
+        description: Compute simple hash (32-bit)
+      - name: DJB2
+        role: own
+        verbs: [djb2]
+        prepositions: [from]
+        description: Compute DJB2 hash (64-bit)
+      - name: FNV1a
+        role: own
+        verbs: [fnv1a, fnv]
+        prepositions: [from]
+        description: Compute FNV-1a hash (64-bit)
